@@ -39,7 +39,7 @@ void TRY(int k) {
 // Bai 3.2 
 // Pham Ngoc Tuyen - 20235455 - 750829
 int main() {
-    cout << "-------------- Pham Ngoc Tuyen - 20235455 ---------------\n";
+    // cout << "-------------- Pham Ngoc Tuyen - 20235455 ---------------\n";
     cin >> n_55;
     mark[1][1] = 1;
     X[1] = Y[1] = 1;

@@ -1,49 +1,56 @@
+// Bài 3.4 - Phạm Ngọc Tuyên - 20235455
 #include <bits/stdc++.h>
 using namespace std;
-int a[1000], n;
-int mem[1000]; //# mảng ghi nhớ lời giải các bài toán con đã được giải
 
+int a_55[1000], n_55;
+int mem_55[1000]; // Mảng lưu kết quả các bài toán con đã được giải (memoization)
+
+// Khởi tạo mảng memoization với giá trị -1
 void init() {
-    memset(mem, -1, sizeof(mem));
+    memset(mem_55, -1, sizeof(mem_55));
 }
 
-//# Quy hoạch động, 
-//# Hàm lis(i) trả về độ dài dãy con tăng dài nhất kết thúc bởi a[i]
-int lis(int i) {
-    if (mem[i] != -1) return mem[i];
-    int curr_max = 1;
-    for (int j = 0; j < i; j++)
-    {
-        if (a[i] < a[j])
-            curr_max = max(lis(j) + 1, curr_max);
-    }
-    mem[i] = curr_max;
-    return curr_max;
+// Quy hoạch động
+// Hàm lis(i_55): trả về độ dài dãy con tăng dài nhất kết thúc tại chỉ số i_55
+int lis(int i_55) {
+    if (mem_55[i_55] != -1) return mem_55[i_55];
+    int res_55 = 1;
+    for (int j_55 = 0; j_55 < i_55; ++j_55)
+        if (a_55[j_55] < a_55[i_55] && res_55 < lis(j_55) + 1)
+            res_55 = lis(j_55) + 1;
+    mem_55[i_55] = res_55;
+    return mem_55[i_55];
 }
 
-//# Truy vet loi giai
-void trace(int i) {
-    for (int j = 0; j < i; j++) {
-        if (a[j] < a[i] && mem[i] == 1 + mem[j]) {
-            trace(j);
+// Truy vết lời giải LIS
+void trace(int i_55) {
+    for (int j_55 = 0; j_55 < i_55; j_55++) {
+        if (a_55[j_55] < a_55[i_55] && mem_55[i_55] == 1 + mem_55[j_55]) {
+            trace(j_55);
             break;
         }
     }
-    cout << a[i] << " ";
+    cout << a_55[i_55] << " ";
 }
 
 int main() {
+    cout << "-------------- Pham Ngoc Tuyen - 20235455 ---------------\n";
     init();
-    cin >> n;
-    for (int i = 0; i < n; i++) cin >> a[i];
-    int res = 1, pos = 0;
-    for (int i = 1; i < n; i++) {
-        if (res < lis(i)) {
-            res = lis(i);
-            pos = i;
+    cin >> n_55;
+    for (int i_55 = 0; i_55 < n_55; i_55++) cin >> a_55[i_55];
+
+    int res_55 = 1, pos_55 = 0;
+    for (int i_55 = 1; i_55 < n_55; i_55++) {
+        if (res_55 < lis(i_55)) {
+            res_55 = lis(i_55);
+            pos_55 = i_55;
         }
     }
-    cout << res << endl;
-    trace(pos);
+
+    cout << res_55 << endl;
+    trace(pos_55);
     return 0;
 }
+
+// Bài 3.4 - Phạm Ngọc Tuyên - 20235455
+// Tuần 36 - Lab 3
