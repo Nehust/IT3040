@@ -1,1 +1,0 @@
-a.erase(new_end, a.end());
