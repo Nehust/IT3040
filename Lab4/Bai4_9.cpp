@@ -1,48 +1,50 @@
+// Pham Ngoc Tuyen - 20235455 - 750829
 #include <iostream>
 #include <queue>
 #include <climits>
 using namespace std;
 
-vector<int> dijkstra(const vector< vector< pair<int, int> > >& adj) {
-    auto cmp = [](pair<int, int> a, pair<int, int> b) {
-        return a.second > b.second;
+vector<int> dijkstra(const vector< vector< pair<int, int> > >& adj_55) {
+    auto cmp_55 = [](pair<int, int> a_55, pair<int, int> b_55) {
+        return a_55.second > b_55.second;
         };
 
-    vector<int> prev(adj.size());
-    priority_queue < pair<int, int>, vector<pair<int, int>>, decltype(cmp)> Q(cmp);
-    vector<int> distance(adj.size(), INT_MAX);
-    distance[0] = 0;
-    for (size_t i = 0; i < adj.size(); i++)
+    vector<int> prev_55(adj_55.size());
+    priority_queue < pair<int, int>, vector<pair<int, int>>, decltype(cmp_55)> Q_55(cmp_55);
+    vector<int> distance_55(adj_55.size(), INT_MAX);
+    distance_55[0] = 0;
+    for (size_t i_55 = 0; i_55 < adj_55.size(); i_55++)
     {
-        Q.push({ i, distance[i] });
+        Q_55.push({ i_55, distance_55[i_55] });
     }
 
-    while (!Q.empty())
+    while (!Q_55.empty())
     {
-        int current = Q.top().first;
-        if (Q.top().second > distance[current]) {
-            Q.pop();
+        int current_55 = Q_55.top().first;
+        if (Q_55.top().second > distance_55[current_55]) {
+            Q_55.pop();
             continue;
         }
-        Q.pop();
-        for (auto x : adj[current]) {
-            int alt = distance[current] + x.second;
-            if (alt < distance[x.first]) {
-                distance[x.first] = alt;
-                prev[x.first] = current;
-                Q.push({ x.first, distance[x.first] });
+        Q_55.pop();
+        for (auto x_55 : adj_55[current_55]) {
+            int alt_55 = distance_55[current_55] + x_55.second;
+            if (alt_55 < distance_55[x_55.first]) {
+                distance_55[x_55.first] = alt_55;
+                prev_55[x_55.first] = current_55;
+                Q_55.push({ x_55.first, distance_55[x_55.first] });
             }
         }
     }
-    return distance;
+    return distance_55;
 }
 
 int main() {
-    int n = 9;
-    vector< vector< pair<int, int> > > adj(n);
-    auto add_edge = [&adj](int u, int v, int w) {
-        adj[u].push_back({ v, w });
-        adj[v].push_back({ u, w });
+    cout << "-----------Pham Ngoc Tuyen - 20235455-------" << endl;
+    int n_55 = 9;
+    vector< vector< pair<int, int> > > adj_55(n_55);
+    auto add_edge = [&adj_55](int u_55, int v_55, int w_55) {
+        adj_55[u_55].push_back({ v_55, w_55 });
+        adj_55[v_55].push_back({ u_55, w_55 });
         };
 
     add_edge(0, 1, 4);
@@ -59,11 +61,11 @@ int main() {
     add_edge(6, 8, 6);
     add_edge(7, 8, 7);
 
-    vector<int> distance = dijkstra(adj);
-    for (int i = 0; i < distance.size(); ++i) {
-        cout << "distance " << 0 << "->" << i << " = " << distance[i] << endl;
+    vector<int> distance_55 = dijkstra(adj_55);
+    for (int i_55 = 0; i_55 < distance_55.size(); ++i_55) {
+        cout << "distance " << 0 << "->" << i_55 << " = " << distance_55[i_55] << endl;
     }
-
     return 0;
 }
+// Pham Ngoc Tuyen - 20235455 - 750829
 

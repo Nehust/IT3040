@@ -1,66 +1,68 @@
+// Pham Ngoc Tuyen - 20235455 - 750829
 #include <iostream> 
 using namespace std;
-struct Node {
-    int data;
-    Node* next;
 
-    Node(int data) {
-        this->data = data;
-        next = NULL;
+struct Node_50 {
+    int data_50;
+    Node_50* next_50;
+
+    Node_50(int data_50) {
+        this->data_50 = data_50;
+        next_50 = NULL;
     }
 };
 
 // Thêm phần từ vào đầu danh sách 
-Node* prepend(Node* head, int data) {
-    Node* tempNode = new Node(data);
-    tempNode->next = head;
-    head = tempNode;
-    return head;
+Node_50* prepend_50(Node_50* head_50, int data_50) {
+    Node_50* tempNode_50 = new Node_50(data_50);
+    tempNode_50->next_50 = head_50;
+    head_50 = tempNode_50;
+    return head_50;
 }
 
 // In danh sách liên kết đơn 
-void print(Node* head) {
-    Node* count = head;
-    while (count != NULL)
+void print_50(Node_50* head_50) {
+    Node_50* count_50 = head_50;
+    while (count_50 != NULL)
     {
-        cout << count->data << " ";
-        count = count->next;
+        cout << count_50->data_50 << " ";
+        count_50 = count_50->next_50;
     }
     cout << endl;
 }
 
 // Đảo ngược danh sách 
-Node* reverse(Node* head) {
-    Node* currentNode = head;
-    Node* preNode = NULL;
-    Node* nextNode = NULL;
-    while (currentNode != NULL)
+Node_50* reverse_50(Node_50* head_50) {
+    Node_50* currentNode_50 = head_50;
+    Node_50* preNode_50 = NULL;
+    Node_50* nextNode_50 = NULL;
+    while (currentNode_50 != NULL)
     {
-        nextNode = currentNode->next;
-        currentNode->next = preNode;
-        preNode = currentNode;
-        currentNode = nextNode;
+        nextNode_50 = currentNode_50->next_50;
+        currentNode_50->next_50 = preNode_50;
+        preNode_50 = currentNode_50;
+        currentNode_50 = nextNode_50;
     }
-    head = preNode;
-    return head;
+    head_50 = preNode_50;
+    return head_50;
 }
 
 int main() {
-    int n, u;
-    cin >> n;
-    Node* head = NULL;
-    for (int i = 0; i < n; ++i) {
-        cin >> u;
-        head = prepend(head, u);
+    int n_50, u_50;
+    cin >> n_50;
+    Node_50* head_50 = NULL;
+    for (int i_50 = 0; i_50 < n_50; ++i_50) {
+        cin >> u_50;
+        head_50 = prepend_50(head_50, u_50);
     }
-
     cout << "Original list: ";
-    print(head);
+    print_50(head_50);
 
-    head = reverse(head);
+    head_50 = reverse_50(head_50);
 
     cout << "Reversed list: ";
-    print(head);
+    print_50(head_50);
 
     return 0;
 }
+// Pham Ngoc Tuyen - 20235455 - 750829
